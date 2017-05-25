@@ -90,13 +90,13 @@ def ma(x,list):
 
 def charge(list1,i):
     for index,price in enumerate(list1):
-        if(index>(i+3)):
+        if(index>100):
             price = list1[index]
             lma = ma(i,list1[(index-i+1):(index+1)])
-            refLma = ma(20,list1[(index-20):(index)])
-            if price>lma:
+            refLma = ma(i,list1[(index-i):(index)])
+            if price>lma and refLma>lma:
                 buy(price)
-            elif price<lma :
+            elif price<lma and refLma<lma:
                 sell(price)
         else:
             pass
@@ -137,8 +137,6 @@ def getClose(database,db_name):
     database.connect()
     list = []
     for data in database.select("close",db_name):
-        if type(data[0]) is tuple:
-            print 'list'
         if int(data[0])==0:
             pass
         else:
@@ -180,13 +178,42 @@ def coverClear():
     days = 0
 
 # shfe 上期所   dce 大商所   czce  郑商所    cffex 中金所
-def getUrl(name,index=0):
+# 大商所  豆一 A   豆二 B     胶合板 BB    玉米 C    纤维板 FB
+# 铁矿石 I     焦炭 J      鸡蛋 JD    焦煤 JM   塑料 L   豆粕 M
+# PP PP     PVC V      豆油   Y   棕榈  P
+def getUrl(name,index=1):
     urlname = ''
     if name == '玉米':
         urlname = 'C'
     elif name == '棕榈':
         urlname = 'P'
-    return "http://vip.stock.finance.sina.com.cn/q/view/vFutures_History.php?page=" + str(index) + "&start=1990-08-22&end=2017-05-23&jys=dce&pz=" + urlname + "&type=inner"
+    elif name == '豆一':
+        urlname = 'A'
+    elif name == '豆二':
+        urlname = 'B'
+    elif name == '胶合板':
+        urlname = 'BB'
+    elif name == '纤维板':
+        urlname = 'FB'
+    elif name == '铁矿石':
+        urlname = 'I'
+    elif name == '焦炭':
+        urlname = 'J'
+    elif name == '鸡蛋':
+        urlname = 'JD'
+    elif name == '焦煤':
+        urlname = 'JM'
+    elif name == '塑料':
+        urlname = 'L'
+    elif name == '豆粕':
+        urlname = 'M'
+    elif name == 'PP':
+        urlname = 'PP'
+    elif name == 'PVC':
+        urlname = 'V'
+    elif name == '豆油':
+        urlname = 'Y'
+    return "http://vip.stock.finance.sina.com.cn/q/view/vFutures_History.php?page=" + str(index) + "&breed="+urlname+"0&start=1990-08-22&end=2017-05-23&jys=dce&pz=" + urlname + "&hy="+urlname+"0&type=inner"
 
 def startCharge(db_name,i):
     database.connect()
@@ -194,30 +221,35 @@ def startCharge(db_name,i):
     charge(c_list,i)
     coverResult()
 
-def write(c_list):
+def write(c_list,tablename):
     database.connect()
     for dayPrice in c_list:
         if (is_number(dayPrice[1])):
             print 'write'
             print dayPrice[0], dayPrice[1], dayPrice[2], dayPrice[3], dayPrice[4], dayPrice[5]
-            database.write(dayPrice[0], dayPrice[1], dayPrice[2], dayPrice[3], dayPrice[4], dayPrice[5])
+            database.write(tablename,dayPrice[0], dayPrice[1], dayPrice[2], dayPrice[3], dayPrice[4], dayPrice[5])
     database.conn.commit()
 
-def spider():
+def spider(name):
     c_list = []
-    count = getPage(getHtml(getUrl('棕榈')))
+    count = getPage(getHtml(getUrl(name)))
     for i in range(1, count + 1):
-        C_url = getUrl('棕榈',i)
+        print i
+        C_url = getUrl(name,i)
+        print C_url
         priceList = getPriceList(getHtml(C_url))
         for priceDay in priceList:
             c_list.append(priceDay)
     return c_list
 
 if __name__ == '__main__':
-    database.connect()
-    for i in range(3,50):
+    # c_list = spider('棕榈')
+    # print c_list
+    # write(c_list,'p_table')
+
+    for i in range(3,30):
         print i
-        startCharge('c_table',i)
+        startCharge('p_table',i)
         coverClear()
         print '---------------------------'
 

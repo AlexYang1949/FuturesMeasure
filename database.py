@@ -10,8 +10,8 @@ class database(object):
         self.cursor = self.conn.cursor()
 
     # 写入
-    def write(self,date,open,close,high,low,vol):
-        sql = "insert into p_table(date,open,close,high,low,vol) SELECT %s,%s,%s,%s,%s,%s FROM DUAL WHERE NOT EXISTS(SELECT date FROM  p_table WHERE date=%s)"
+    def write(self,tablename,date,open,close,high,low,vol):
+        sql = "insert into "+tablename+"(date,open,close,high,low,vol) SELECT %s,%s,%s,%s,%s,%s FROM DUAL WHERE NOT EXISTS(SELECT date FROM  "+tablename+" WHERE date=%s)"
         params = (str(date),float(open),float(close),float(high),float(low),vol,str(date))
         n = self.cursor.execute(sql,params)
         print n
