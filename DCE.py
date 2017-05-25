@@ -261,7 +261,8 @@ if __name__ == '__main__':
     print asset_array
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.plot([price[1] for price in asset_array])
-    ax.set_xticklabels([price[0] for price in asset_array])
+    ax.plot(range(len(asset_array)),[price[1] for price in asset_array])
+    ax.set_xticklabels([3,123,1,23,123,1,23,1,23,1,231,23],rotation=-30)
+
     plt.show()
 
