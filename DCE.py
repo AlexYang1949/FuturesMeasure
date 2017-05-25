@@ -7,7 +7,7 @@ import urllib
 import re
 from bs4 import BeautifulSoup
 from database import database
-
+import matplotlib.pyplot as plt
 
 hold_price = 0
 hold_direct = 0
@@ -22,13 +22,14 @@ total_lost = 0
 total_get = 0
 charge_period = 19
 database = database()
+asset_array = []
 
 def getHtml(url):
     page = urllib.urlopen(url)
     html = page.read()
     return html
 
-def buy(price):
+def buy(price,date):
     global hold_direct
     global hold_number
     global hold_price
@@ -37,14 +38,14 @@ def buy(price):
     if hold_direct == 1:
         return
 
-    cover(price)
+    cover(price,date)
     hold_price = price
     hold_number = all_assets/hold_price
     hold_direct = 1
     # print 'buy', hold_number
 
 
-def sell(price):
+def sell(price,date):
     global hold_direct
     global hold_number
     global hold_price
@@ -53,13 +54,13 @@ def sell(price):
     if hold_direct == -1 or hold_direct==0:
         return
     global hold_price
-    cover(price)
+    cover(price,date)
     hold_price = price
     hold_number = all_assets / hold_price
     hold_direct = -1
     # print 'sell',hold_number
 
-def cover(price):
+def cover(price,date):
     global all_assets
     global days
     global max_lost
@@ -68,6 +69,7 @@ def cover(price):
     global get_time
     global total_lost
     global total_get
+    global asset_array
     dis = (price - hold_price)*hold_direct*hold_number
     precent = dis*100/all_assets
     if precent>max_get:
@@ -76,6 +78,7 @@ def cover(price):
         max_lost = precent
 
     all_assets += dis
+    asset_array.append((date,all_assets))
     # print "get = " + str(dis),"current = "+str(price),"hold = " +str(hold_price),hold_direct,hold_number,"all = "+str(all_assets),"day ="+str(days)
     days = 1
     if dis>0:
@@ -88,16 +91,18 @@ def cover(price):
 def ma(x,list):
     return sum(list)/x
 
-def charge(list1,i):
+def charge(list,i):
+    list1 =[data[1] for data in list]
     for index,price in enumerate(list1):
         if(index>100):
             price = list1[index]
             lma = ma(i,list1[(index-i+1):(index+1)])
             refLma = ma(i,list1[(index-i):(index)])
-            if price>lma and refLma>lma:
-                buy(price)
-            elif price<lma and refLma<lma:
-                sell(price)
+            date = list[index][0]
+            if price>lma :#and refLma>lma:
+                buy(price,date)
+            elif price<lma :#and refLma<lma:
+                sell(price,date)
         else:
             pass
 
@@ -136,11 +141,11 @@ def is_number(s):
 def getClose(database,db_name):
     database.connect()
     list = []
-    for data in database.select("close",db_name):
-        if int(data[0])==0:
+    for data in database.select("date,close",db_name):
+        if int(data[1])==0:
             pass
         else:
-            list.append(int(data[0]))
+            list.append((str(data[0]),int(data[1])))
     return list
 
 def coverResult():
@@ -243,14 +248,20 @@ def spider(name):
     return c_list
 
 if __name__ == '__main__':
-    # c_list = spider('棕榈')
-    # print c_list
-    # write(c_list,'p_table')
+    # c_list = spider('玉米')
+    # write(c_list,'c_table')
 
-    for i in range(3,30):
-        print i
-        startCharge('p_table',i)
-        coverClear()
-        print '---------------------------'
+    # for i in range(3,30):
+    #     print i
+    #     startCharge('c_table',i)
+    #     coverClear()
+    #     print '---------------------------'
 
+    startCharge('p_table',25)
+    print asset_array
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot([price[1] for price in asset_array])
+    ax.set_xticklabels([price[0] for price in asset_array])
+    plt.show()
 
