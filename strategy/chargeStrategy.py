@@ -5,7 +5,7 @@ class ChargeStrategy():
     def maStrategy(self,priceList,index,period):
         if (index > 100):
             price = priceList[index]
-            lma = self.ma(period, priceList[(index - index + 1):(index + 1)])
+            lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
             # date = priceList[index][
             if price > lma:  # and refLma>lma:
                 return 1

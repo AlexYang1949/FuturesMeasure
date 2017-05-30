@@ -7,15 +7,13 @@ import matplotlib.pyplot as plt
 from charge.chargeManager import ChargeManager
 from data.dataProvider import DataProvider
 
-charge_period = 25
+charge_period = 22
 
 if __name__ == '__main__':
     c_list = []
     dp = DataProvider(name='棕榈')
-    p_list = dp.getData(['close'])
-    for price in p_list:
-        c_list.append(price[0])
-    cm = ChargeManager(c_list,charge_period)
+    p_list = dp.getData(['date','close'])
+    cm = ChargeManager(p_list,charge_period)
     cm.startCharge()
     cm.printChargeResult()
 

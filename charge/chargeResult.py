@@ -21,10 +21,10 @@ class ChargeResult(object):
         self.total_get = 0
 
     def printResult(self):
-        print "all_assets =" + str(self.all_assets)
-        print "max_get =" + str(self.max_get) + "%"
-        print "max_lost = " + str(self.max_lost) + "%"
-        print "get_time =" + str(self.get_time)
-        print "lost_time = " + str(self.lost_time)
-        print "total_get =" + str(self.total_get)
-        print "total_lost = " + str(self.total_lost)
+        print "all_assets = %.2f" %self.all_assets
+        print "max_get = %.2f"%self.max_get + "%"
+        print "max_lost = %.2f"%self.max_lost + "%"
+        print "get_time = %.f" %self.get_time
+        print "lost_time = %.f" %self.lost_time
+        print "total_get = %.2f" %self.total_get
+        print "total_lost = %.2f" %self.total_lost
