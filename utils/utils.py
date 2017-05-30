@@ -8,7 +8,6 @@ class utils():
             return True
         except ValueError:
             pass
-
         try:
             import unicodedata
             unicodedata.numeric(s)
@@ -18,39 +17,142 @@ class utils():
         return False
 
     @classmethod
-    def getShort(self,name):
-        urlname = ''
+    def getInfoWithName(self,name):
+        shortname = ''
+        exchangename = 'dce'
         if name == '玉米':
-            urlname = 'C'
+            shortname = 'c'
         elif name == '棕榈':
-            urlname = 'P'
+            shortname = 'p'
         elif name == '豆一':
-            urlname = 'A'
+            shortname = 'a'
         elif name == '豆二':
-            urlname = 'B'
+            shortname = 'b'
         elif name == '胶合板':
-            urlname = 'BB'
+            shortname = 'bb'
         elif name == '纤维板':
-            urlname = 'FB'
+            shortname = 'fb'
         elif name == '铁矿石':
-            urlname = 'I'
+            shortname = 'i'
         elif name == '焦炭':
-            urlname = 'J'
+            shortname = 'j'
         elif name == '鸡蛋':
-            urlname = 'JD'
+            shortname = 'jd'
         elif name == '焦煤':
-            urlname = 'JM'
+            shortname = 'jm'
         elif name == '塑料':
-            urlname = 'L'
+            shortname = 'l'
         elif name == '豆粕':
-            urlname = 'M'
+            shortname = 'm'
         elif name == 'PP':
-            urlname = 'PP'
+            shortname = 'pp'
         elif name == 'PVC':
-            urlname = 'V'
+            shortname = 'v'
         elif name == '豆油':
-            urlname = 'Y'
-        return urlname.lower()
+            shortname = 'y'
+            # 郑商所  棉花 CF   玻璃  FG   郑醇  MA    菜油  OI    早稻  RI      菜粕  RM      菜籽  RS      硅铁  SF      锰硅  SM
+            # 白糖  SR      PTA   TA      强麦  WH      动力煤  ZC
+        elif name == '棉花':
+            shortname = 'cf'
+            exchangename = 'czce'
+        elif name == '玻璃':
+            shortname = 'fg'
+            exchangename = 'czce'
+        elif name == '郑醇':
+            shortname = 'ma'
+            exchangename = 'czce'
+        elif name == '菜油':
+            shortname = 'oi'
+            exchangename = 'czce'
+        elif name == '菜粕':
+            shortname = 'rm'
+            exchangename = 'czce'
+        elif name == '菜籽':
+            shortname = 'rs'
+            exchangename = 'czce'
+        elif name == '硅铁':
+            shortname = 'sf'
+            exchangename = 'czce'
+        elif name == '锰硅':
+            shortname = 'sm'
+            exchangename = 'czce'
+        elif name == '白糖':
+            shortname = 'sr'
+            exchangename = 'czce'
+        elif name == 'PTA':
+            shortname = 'ta'
+            exchangename = 'czce'
+        elif name == '强麦':
+            shortname = 'wh'
+            exchangename = 'czce'
+        elif name == '动力煤':
+            shortname = 'zc'
+            exchangename = 'czce'
+
+        elif name == '白银':
+            shortname = 'ag'
+            exchangename = 'shfe'
+        elif name == '沪铝':
+            shortname = 'al'
+            exchangename = 'shfe'
+        elif name == '黄金':
+            shortname = 'au'
+            exchangename = 'shfe'
+        elif name == '沥青':
+            shortname = 'bu'
+            exchangename = 'shfe'
+        elif name == '燃油':
+            shortname = 'fu'
+            exchangename = 'shfe'
+        elif name == '热扎卷板':
+            shortname = 'hc'
+            exchangename = 'shfe'
+        elif name == '沪镍':
+            shortname = 'ni'
+            exchangename = 'shfe'
+        elif name == '沪铅':
+            shortname = 'pb'
+            exchangename = 'shfe'
+        elif name == '螺纹钢':
+            shortname = 'rb'
+            exchangename = 'shfe'
+        elif name == '橡胶':
+            shortname = 'ru'
+            exchangename = 'shfe'
+        elif name == '沪锡':
+            shortname = 'sn'
+            exchangename = 'shfe'
+        elif name == '线材':
+            shortname = 'wr'
+            exchangename = 'shfe'
+        elif name == '沪锌':
+            shortname = 'zn'
+            exchangename = 'shfe'
+
+        elif name == '中证500':
+            shortname = 'ic'
+            exchangename = 'cffex'
+        elif name == '沪深300':
+            shortname = 'if'
+            exchangename = 'cffex'
+        elif name == '上证50':
+            shortname = 'ih'
+            exchangename = 'cffex'
+        elif name == '10年国债':
+            shortname = 't'
+            exchangename = 'cffex'
+        elif name == '5年国债':
+            shortname = 'tf'
+            exchangename = 'cffex'
+        return shortname,exchangename
+
+    @classmethod
+    def getShort(self, name):
+        return self.getInfoWithName(name)[0]
+
+    @classmethod
+    def getExhouseName(self, name):
+        return self.getInfoWithName(name)[1]
 
     # def plot(self):
     #     fig = plt.figure()
@@ -58,3 +160,6 @@ class utils():
     #     ax.plot(range(len(asset_array)), [price[1] for price in asset_array])
     #     ax.set_xticklabels([3, 123, 1, 23, 123, 1, 23, 1, 23, 1, 231, 23], rotation=-30)
     #     plt.show()
+
+if __name__ == '__main__':
+    print utils.getShort('菜油')
