@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 
-class chargeResult(object):
+class ChargeResult(object):
     def __init__(self):
         self.all_assets = 100000
         self.max_lost = 0
@@ -9,6 +9,7 @@ class chargeResult(object):
         self.get_time = 0
         self.total_lost = 0
         self.total_get = 0
+        self.asset_array = []
 
     def clearResult(self):
         self.all_assets = 100000

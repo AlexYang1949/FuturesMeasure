@@ -18,19 +18,19 @@ class database(object):
         n = self.cursor.execute(sql,params)
         print n
 
-
-
-# # 更新
-# sql = "update user set name=%s where id=3"
-# param = ("bbb")
-# n = cursor.execute(sql, param)
-# print n
-#
     # 查询
     def select(self,colume="*",db_name='c_table'):
         n = self.cursor.execute("select "+colume+" from "+db_name)
         return self.cursor.fetchall()
 
+    def close(self):
+        self.conn.close()
+        # # 更新
+        # sql = "update user set name=%s where id=3"
+        # param = ("bbb")
+        # n = cursor.execute(sql, param)
+        # print n
+        #
 #
 # # 删除
 # sql = "delete from user where name=%s"
@@ -39,5 +39,4 @@ class database(object):
 # print n
 #
     # 关闭
-    def close(self):
-        self.conn.close()
+
