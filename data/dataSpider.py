@@ -84,8 +84,5 @@ if __name__ == '__main__':
     # shfeNameArray = ['白银','沪铝','黄金','沥青','沪铜','燃油','热扎卷板','沪镍','沪铅','螺纹钢','橡胶','沪锡','线材','沪锌']
     cffexNameArray = ['中证500','沪深300','上证50','10年国债','5年国债']
     for name in cffexNameArray:
-        # print utils.getShort(name)
         spider = DataSpider(name)
         spider.start()
-
-    # 中金所   中证500  IC       沪深300   IF      上证50   IH         10年国债     T       5年国债       TF]
