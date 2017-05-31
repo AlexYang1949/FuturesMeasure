@@ -7,7 +7,7 @@ class ChargeStrategy():
             price = priceList[index]
             lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
             # date = priceList[index][
-            if price > lma:  # and refLma>lma:
+            if price >= lma:  # and refLma>lma:
                 return 1
             elif price < lma:  # and refLma<lma:
                 return -1

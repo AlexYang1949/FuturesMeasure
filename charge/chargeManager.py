@@ -29,10 +29,11 @@ class ChargeManager():
         self.chargeModel.hold_direct = direction
 
     def cover(self,price, date):
+        # print price, self.chargeModel.hold_price, self.chargeModel.hold_direct,self.chargeModel.hold_number
         dis = (price - self.chargeModel.hold_price) * self.chargeModel.hold_direct * self.chargeModel.hold_number
-        # print price,self.chargeModel.hold_price,self.chargeModel.hold_direct
+
         precent = dis * 100 / self.chargeResult.all_assets
-        print date,precent
+        # print date,precent
         if precent > self.chargeResult.max_get:
             self.chargeResult.max_get = precent
         if precent < self.chargeResult.max_lost:
