@@ -6,8 +6,9 @@ import re
 import urllib
 from data.dataProvider import DataProvider
 from utils.utils import utils
+from database import database
 
-class dataSpider():
+class DataSpider():
     def __init__(self,name):
         self.name = name
         self.tablename = utils.getShort(self.name)+'_table'
@@ -22,11 +23,10 @@ class dataSpider():
     #获取整个页面的价格数据
     def spiderList(self):
         c_list = []
-        count = self.getPage(self.getUrl(self.name))
+        count = self.getPageNum(self.getUrl(self.name))
         for i in range(1, count + 1):
-            print i
             C_url = self.getUrl(self.name,i)
-            print C_url
+            print '爬取%s,第%d页\nurl=%s'%(self.name,i,C_url)
             priceList = self.getPriceList(C_url)
             for priceDay in priceList:
                 c_list.append(priceDay)
@@ -79,5 +79,12 @@ class dataSpider():
         return "http://vip.stock.finance.sina.com.cn/q/view/vFutures_History.php?page=" + str(index) + "&breed="+shortname+"0&start=1990-08-22&end=2017-05-23&jys="+exhouse_name+"&pz=" + shortname + "&hy="+shortname+"0&type=inner"
 
 if __name__ == '__main__':
-    dp = DataProvider('棕榈')
-    print dp.getData(name_array=['date','close'])
+    # spiderNameArray = ['豆一','豆二','胶合板','玉米','纤维板','铁矿石','焦炭','鸡蛋','焦煤','塑料','豆粕','PP','PVC','豆油','棕榈']
+    spiderNameArray = ['棉花','玻璃','郑醇','菜油','早稻','菜粕','菜籽','硅铁','锰硅','白糖','PTA','强麦','动力煤']
+    for name in spiderNameArray:
+        spider = DataSpider(name=name)
+        spider.start()
+    # 上期所   白银  AG     沪铝  AL      黄金   AU      沥青  BU      沪铜   CU     燃油  FU      热扎卷板    HC      沪镍  NI
+    #  沪铅   PB      螺纹钢   RB        橡胶  RU      沪锡   SN     线材    WR        沪锌  ZN
+
+    # 中金所   中证500  IC       沪深300   IF      上证50   IH         10年国债     T       5年国债       TF]

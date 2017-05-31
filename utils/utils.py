@@ -2,6 +2,7 @@
 #-*-coding:utf-8-*-
 
 class utils():
+    @classmethod
     def is_number(self,s):
         try:
             float(s)
@@ -63,6 +64,9 @@ class utils():
             exchangename = 'czce'
         elif name == '菜油':
             shortname = 'oi'
+            exchangename = 'czce'
+        elif name == '早稻':
+            shortname = 'ri'
             exchangename = 'czce'
         elif name == '菜粕':
             shortname = 'rm'

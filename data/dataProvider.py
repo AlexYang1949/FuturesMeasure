@@ -31,3 +31,7 @@ class DataProvider():
     def writeData(self,dataDict):
         self.db.write(self.db_name, dataDict[0], dataDict[1], dataDict[2], dataDict[3], dataDict[4], dataDict[5])
         self.db.conn.commit()
+
+    def createTable(self,tablename):
+        self.db.create(tablename)
+        self.db.conn.commit()
