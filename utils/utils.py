@@ -104,6 +104,8 @@ class utils():
             exchangename = 'shfe'
         elif name == '沥青':
             shortname = 'bu'
+        elif name == '沪铜':
+            shortname = 'cu'
             exchangename = 'shfe'
         elif name == '燃油':
             shortname = 'fu'
@@ -134,19 +136,19 @@ class utils():
             exchangename = 'shfe'
 
         elif name == '中证500':
-            shortname = 'ic'
+            shortname = 'IC'
             exchangename = 'cffex'
         elif name == '沪深300':
-            shortname = 'if'
+            shortname = 'IF'
             exchangename = 'cffex'
         elif name == '上证50':
-            shortname = 'ih'
+            shortname = 'IH'
             exchangename = 'cffex'
         elif name == '10年国债':
-            shortname = 't'
+            shortname = 'T'
             exchangename = 'cffex'
         elif name == '5年国债':
-            shortname = 'tf'
+            shortname = 'TF'
             exchangename = 'cffex'
         return shortname,exchangename
 
