@@ -14,7 +14,7 @@ class Database(object):
     # 写入
     def write(self,tablename,date,open,close,high,low,vol):
         self.create(tablename)
-        sql = "insert into "+tablename+"(date,open,close,high,low,vol) SELECT %s,%s,%s,%s,%s,%s FROM DUAL WHERE NOT EXISTS(SELECT date FROM  "+tablename+" WHERE date=%s)"
+        sql = "insert into "+tablename+"(date,close,open,high,low,vol) SELECT %s,%s,%s,%s,%s,%s FROM DUAL WHERE NOT EXISTS(SELECT date FROM  "+tablename+" WHERE date=%s)"
         params = (str(date),float(open),float(close),float(high),float(low),vol,str(date))
         n = self.cursor.execute(sql,params)
         self.conn.commit()
@@ -60,7 +60,12 @@ class Database(object):
         self.conn.commit()
         print '%s删除一条记录 %s'%(tablename,n)
 
-    # 关闭
+    # 清空
+    def truncate(self, tablename):
+        sql = "truncate " + tablename
+        n = self.cursor.execute(sql)
+        self.conn.commit()
+        print '清空%s' %tablename
 
 if __name__ == '__main__':
     pass

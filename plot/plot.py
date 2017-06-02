@@ -11,7 +11,7 @@ class Plot():
         plt.show()
 
 if __name__ == '__main__':
-    dp = DataProvider('棉花')
+    dp = DataProvider('玉米')
     p_list = dp.getData(['date', 'close'])
     price_list = [int(price[1]) for price in p_list]
     date_list = [str(price[0]) for price in p_list]
