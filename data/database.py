@@ -3,7 +3,7 @@
 
 import MySQLdb
 
-class database(object):
+class Database(object):
     def __init__(self):
         self.connect()
     # 连接
@@ -17,6 +17,7 @@ class database(object):
         sql = "insert into "+tablename+"(date,open,close,high,low,vol) SELECT %s,%s,%s,%s,%s,%s FROM DUAL WHERE NOT EXISTS(SELECT date FROM  "+tablename+" WHERE date=%s)"
         params = (str(date),float(open),float(close),float(high),float(low),vol,str(date))
         n = self.cursor.execute(sql,params)
+        self.conn.commit()
         print '%s写入%s，结果%d'%(tablename,str(date),n)
 
     # 查询
@@ -41,6 +42,7 @@ class database(object):
             ") ENGINE=InnoDB DEFAULT CHARSET=latin1;"%tablename
             if self.cursor.execute(sql)==0:
                 print tablename +"表创建成功"
+            self.conn.commit()
 
     def close(self):
         self.conn.close()
@@ -50,15 +52,15 @@ class database(object):
         # n = cursor.execute(sql, param)
         # print n
         #
-#
-# # 删除
-# sql = "delete from user where name=%s"
-# param = ("aaa")
-# n = cursor.execute(sql, param)
-# print n
-#
+
+    # 删除
+    def delete(self,tablename):
+        sql = "delete from "+tablename+" where close=0"
+        n = self.cursor.execute(sql)
+        self.conn.commit()
+        print '%s删除一条记录 %s'%(tablename,n)
+
     # 关闭
 
 if __name__ == '__main__':
-    db = database()
-    db.create('ri_table')
+    pass

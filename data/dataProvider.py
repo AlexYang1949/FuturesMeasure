@@ -1,11 +1,11 @@
 #!/usr/local/bin/python
 #-*-coding:utf-8-*-
-from database import database
+from database import Database
 from utils.utils import  utils
 
 class DataProvider():
     def __init__(self,name):
-        self.db = database()
+        self.db = Database()
         self.db_name = utils.getShort(name)+'_table'
 
     def getData(self,name_array=[]):
@@ -30,8 +30,6 @@ class DataProvider():
 
     def writeData(self,dataDict):
         self.db.write(self.db_name, dataDict[0], dataDict[1], dataDict[2], dataDict[3], dataDict[4], dataDict[5])
-        self.db.conn.commit()
 
     def createTable(self,tablename):
         self.db.create(tablename)
-        self.db.conn.commit()
