@@ -4,6 +4,7 @@ from strategy.chargeStrategy import ChargeStrategy
 from chargeModel import ChargeModel
 from chargeResult import ChargeResult
 from utils.utils import utils
+
 class ChargeManager():
     def __init__(self,data,chargePeriod):
         self.data = data
@@ -35,7 +36,7 @@ class ChargeManager():
         dis = (price - self.chargeModel.hold_price) * self.chargeModel.hold_direct * self.chargeModel.hold_number
 
         precent = dis * 100 / self.chargeResult.all_assets
-        print  '%s 收益：%.2f'%(str(date),precent)
+
         # print date,precent
         if precent > self.chargeResult.max_get:
             self.chargeResult.max_get = precent
@@ -51,6 +52,7 @@ class ChargeManager():
         else:
             self.chargeResult.lost_time += 1
             self.chargeResult.total_lost += dis
+        print  '%s 收益：%.2f 成交价:%s  账户余额:%.2f' % (str(date), precent, price,self.chargeResult.all_assets)
 
     def printChargeResult(self):
         self.chargeResult.printResult()

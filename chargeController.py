@@ -2,8 +2,6 @@
 #-*-coding:utf-8-*-
 #玉米   http://vip.stock.finance.sina.com.cn/q/view/vFutures_History.php?jys=dce&pz=C&hy=C0&breed=C0&type=inner&start=2016-08-22&end=2017-05-22
 
-import matplotlib.pyplot as plt
-
 from charge.chargeManager import ChargeManager
 from data.dataProvider import DataProvider
 
