@@ -52,7 +52,7 @@ class ChargeManager():
         else:
             self.chargeResult.lost_time += 1
             self.chargeResult.total_lost += dis
-        # print  '%s 收益：%.2f 成交价:%s  账户余额:%.2f' % (str(date), precent, price,self.chargeResult.all_assets)
+        print  '%s 收益：%.2f 成交价:%s  账户余额:%.2f' % (str(date), precent, price,self.chargeResult.all_assets)
 
     def printChargeResult(self):
         self.chargeResult.printResult()

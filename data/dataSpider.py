@@ -1,6 +1,6 @@
 #!/usr/local/bin/python
 #-*-coding:utf-8-*-
-
+import datetime
 from bs4 import BeautifulSoup
 import re
 import urllib
@@ -17,7 +17,7 @@ class DataSpider():
     def start(self):
         c_list = self.spiderList()
         for dayPrice in c_list:
-            if (utils.is_number(dayPrice[1])):
+            if (utils.is_number(dayPrice[1]) and dayPrice[1]!=0):
                 self.dataProvider.writeData(dataDict=dayPrice)
 
     #获取整个页面的价格数据
@@ -76,19 +76,35 @@ class DataSpider():
     def getUrl(self,name,index=1):
         shortname = utils.getShort(name)
         exhouse_name = utils.getExhouseName(name)
-        return "http://vip.stock.finance.sina.com.cn/q/view/vFutures_History.php?page=" + str(index) + "&breed="+shortname+"0&start=1990-08-22&end=2017-05-23&jys="+exhouse_name+"&pz=" + shortname + "&hy="+shortname+"0&type=inner"
+        now = datetime.datetime.now()
+        time = now.strftime("%Y-%m-%d")
+        return "http://vip.stock.finance.sina.com.cn/q/view/vFutures_History.php?page=" + str(index) + "&breed="+shortname+"0&start=1990-08-22&end="+time+"&jys="+exhouse_name+"&pz=" + shortname + "&hy="+shortname+"0&type=inner"
+
+    def spiderEveryDay(self):
+        c_list = []
+        C_url = self.getUrl(self.name)
+        # print '爬取%s \n url=%s' % (self.name , C_url)
+        priceList = self.getPriceList(C_url)
+        for priceDay in priceList:
+            c_list.append(priceDay)
+        print c_list
+        for dayPrice in c_list:
+            if (utils.is_number(dayPrice[1]) and dayPrice[1]!=0):
+                self.dataProvider.writeData(dataDict=dayPrice)
 
 if __name__ == '__main__':
     dceNameArray = ['豆一','豆二','胶合板','玉米','纤维板','铁矿石','焦炭','鸡蛋','焦煤','塑料','豆粕','PP','PVC','豆油','棕榈']
     czceNameArray = ['棉花','玻璃','郑醇','菜油','早稻','菜粕','菜籽','硅铁','锰硅','白糖','PTA','强麦','动力煤']
     shfeNameArray = ['白银','沪铝','黄金','沥青','沪铜','燃油','热扎卷板','沪镍','沪铅','螺纹钢','橡胶','沪锡','线材','沪锌']
     cffexNameArray = ['中证500','沪深300','上证50','10年国债','5年国债']
-    for name in cffexNameArray:
+    array = dceNameArray + czceNameArray + shfeNameArray + cffexNameArray
+    for name in array:
         spider = DataSpider(name)
-        spider.start()
+        spider.spiderEveryDay()
+    # 获得当前时间
+
+    # for name in cffexNameArray:
+    #     spider = DataSpider(name)
+    #     spider.start()
     #spider = DataSpider('螺纹钢')
     #spider.start()
-    database = Database()
-    for name in cffexNameArray:
-        tbname = utils.getShort(name)+'_table'
-        database.delete(tbname)
