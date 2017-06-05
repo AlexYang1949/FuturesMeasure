@@ -12,7 +12,7 @@ def testMa(nameArray):
         print '----------------%s--%d周期-------------------' % (name, charge_period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
-        cm = ChargeManager(p_list, charge_period)
+        cm = ChargeManager(p_list, charge_period,nodeStat=False)
         cm.startCharge()
         cm.printChargeResult()
         print '------------------------------------'
@@ -22,6 +22,6 @@ if __name__ == '__main__':
     czceNameArray = ['棉花', '玻璃', '郑醇', '菜油', '早稻', '菜粕', '菜籽', '硅铁', '锰硅', '白糖', 'PTA', '强麦', '动力煤']
     shfeNameArray = ['白银', '沪铝', '黄金', '沥青', '沪铜', '燃油', '热扎卷板', '沪镍', '沪铅', '螺纹钢', '橡胶', '沪锡', '线材', '沪锌']
     cffexNameArray = ['中证500', '沪深300', '上证50', '10年国债', '5年国债']
-    testMa(['棕榈'])
+    testMa(czceNameArray)
 
 

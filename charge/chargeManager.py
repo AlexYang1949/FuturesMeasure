@@ -4,14 +4,15 @@ from strategy.chargeStrategy import ChargeStrategy
 from chargeModel import ChargeModel
 from chargeResult import ChargeResult
 from utils.utils import utils
-
+bool
 class ChargeManager():
-    def __init__(self,data,chargePeriod):
+    def __init__(self,data,chargePeriod ,nodeStat=True):
         self.data = data
         self.chargeResult = ChargeResult()
         self.chargeModel = ChargeModel()
         self.chargeStrategy = ChargeStrategy()
         self.chargePeriod = chargePeriod
+        self.nodeStat = nodeStat
 
     def startCharge(self):
         priceArray = []
@@ -48,11 +49,12 @@ class ChargeManager():
         self.chargeModel.hold_days = 1
         if dis > 0:
             self.chargeResult.get_time += 1
-            self.chargeResult.total_get += dis
+            self.chargeResult.total_get += dis*100/self.chargeResult.all_assets
         else:
             self.chargeResult.lost_time += 1
-            self.chargeResult.total_lost += dis
-        print  '%s 收益：%.2f 成交价:%s  账户余额:%.2f' % (str(date), precent, price,self.chargeResult.all_assets)
+            self.chargeResult.total_lost += dis*100/self.chargeResult.all_assets
+        if self.nodeStat:
+            print  '%s 收益：%.2f 成交价:%s  账户余额:%.2f' % (str(date), precent, price,self.chargeResult.all_assets)
 
     def printChargeResult(self):
         self.chargeResult.printResult()
