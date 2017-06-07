@@ -56,12 +56,16 @@ class ChargeManager():
                 self.chargeResult.gap += self.chargeModel.ref_hold_days
                 self.chargeResult.gapArray.append(self.chargeModel.ref_hold_days)
                 self.chargeModel.ref_hold_days = 0
+                self.chargeResult.distant_bigGet = 0
             else:
                 self.chargeModel.ref_hold_days += self.chargeModel.hold_days
+                self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
         else:
             self.chargeResult.lost_time += 1
             self.chargeResult.total_lost += precent
             self.chargeModel.ref_hold_days += self.chargeModel.hold_days
+            self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
+
         if self.nodeStat:
             print  '%s 收益：%.2f 成交价:%s 账户余额:%.2f ' % (str(date), precent, price,self.chargeResult.all_assets)
         self.chargeModel.hold_days = 1
