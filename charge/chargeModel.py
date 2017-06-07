@@ -5,3 +5,4 @@ class ChargeModel(object):
         self.hold_direct = 0
         self.hold_number = 0
         self.hold_days = 0
+        self.ref_hold_days = 0

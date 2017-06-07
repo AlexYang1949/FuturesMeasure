@@ -4,9 +4,9 @@
     <list default="true" id="f5a1eb90-67d9-4b32-9597-b039197146d8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/charge/chargeManager.py" afterPath="$PROJECT_DIR$/charge/chargeManager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/charge/chargeModel.py" afterPath="$PROJECT_DIR$/charge/chargeModel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/charge/chargeResult.py" afterPath="$PROJECT_DIR$/charge/chargeResult.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chargeController.py" afterPath="$PROJECT_DIR$/chargeController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strategy/chargeStrategy.py" afterPath="$PROJECT_DIR$/strategy/chargeStrategy.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,9 +19,9 @@
     <SUITE FILE_PATH="coverage/FuturesMeasure$plot.coverage" NAME="plot Coverage Results" MODIFIED="1496390540958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/FuturesMeasure$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1496122838403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/charge" />
     <SUITE FILE_PATH="coverage/FuturesMeasure$DCE.coverage" NAME="chargeController Coverage Results" MODIFIED="1496398974803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FuturesMeasure$chargeController.coverage" NAME="chargeController Coverage Results" MODIFIED="1496642323607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FuturesMeasure$chargeController.coverage" NAME="chargeController Coverage Results" MODIFIED="1496813938163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FuturesMeasure$utils.coverage" NAME="utils Coverage Results" MODIFIED="1496150263802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/FuturesMeasure$dataSpider.coverage" NAME="dataSpider Coverage Results" MODIFIED="1496579823653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/FuturesMeasure$dataSpider.coverage" NAME="dataSpider Coverage Results" MODIFIED="1496814182741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/FuturesMeasure$database.coverage" NAME="database Coverage Results" MODIFIED="1496209233866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -30,11 +30,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="chargeController.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chargeController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chargeController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="124">
+              <caret line="17" column="52" lean-forward="false" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
               <folding>
                 <element signature="e#187#233#0" expanded="true" />
               </folding>
@@ -42,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dataSpider.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dataSpider.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/dataSpider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="100" column="15" lean-forward="false" selection-start-line="100" selection-start-column="15" selection-end-line="102" selection-end-column="31" />
+            <state relative-caret-position="116">
+              <caret line="102" column="31" lean-forward="true" selection-start-line="102" selection-start-column="31" selection-end-line="102" selection-end-column="31" />
               <folding>
                 <element signature="e#44#59#0" expanded="true" />
               </folding>
@@ -57,8 +57,8 @@
       <file leaf-file-name="chargeStrategy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strategy/chargeStrategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state relative-caret-position="263">
+              <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -77,8 +77,8 @@
       <file leaf-file-name="chargeModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/charge/chargeModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="26" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="6" selection-end-column="26" />
+            <state relative-caret-position="105">
+              <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -87,8 +87,8 @@
       <file leaf-file-name="chargeResult.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/charge/chargeResult.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+            <state relative-caret-position="250">
+              <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -97,7 +97,7 @@
       <file leaf-file-name="dataProvider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/dataProvider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
+            <state relative-caret-position="310">
               <caret line="30" column="8" lean-forward="false" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
               <folding>
                 <element signature="e#44#73#0" expanded="true" />
@@ -109,8 +109,8 @@
       <file leaf-file-name="chargeManager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/charge/chargeManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="54" column="51" lean-forward="false" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
+            <state relative-caret-position="-409">
+              <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
               <folding>
                 <element signature="e#21#71#0" expanded="true" />
               </folding>
@@ -121,7 +121,7 @@
       <file leaf-file-name="__builtin__.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Library/Caches/PyCharm2017.1/python_stubs/-2125986627/__builtin__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="851">
+            <state relative-caret-position="16110">
               <caret line="1074" column="14" lean-forward="false" selection-start-line="1074" selection-start-column="11" selection-end-line="1074" selection-end-column="14" />
               <folding />
             </state>
@@ -175,13 +175,13 @@
         <option value="$PROJECT_DIR$/data/dbEngine.py" />
         <option value="$PROJECT_DIR$/strategy/ma.py" />
         <option value="$PROJECT_DIR$/strategy/statisticsStrategy.py" />
-        <option value="$PROJECT_DIR$/charge/chargeModel.py" />
         <option value="$PROJECT_DIR$/utils/utils.py" />
         <option value="$PROJECT_DIR$/data/dataProvider.py" />
         <option value="$PROJECT_DIR$/plot/plot.py" />
         <option value="$PROJECT_DIR$/data/database.py" />
         <option value="$PROJECT_DIR$/data/dataSpider.py" />
         <option value="$PROJECT_DIR$/strategy/chargeStrategy.py" />
+        <option value="$PROJECT_DIR$/charge/chargeModel.py" />
         <option value="$PROJECT_DIR$/charge/chargeResult.py" />
         <option value="$PROJECT_DIR$/charge/chargeManager.py" />
         <option value="$PROJECT_DIR$/chargeController.py" />
@@ -195,8 +195,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="38" />
-    <option name="y" value="23" />
+    <option name="x" value="11" />
+    <option name="y" value="24" />
     <option name="width" value="1245" />
     <option name="height" value="675" />
   </component>
@@ -218,7 +218,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -289,7 +289,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -322,7 +322,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.chargeController">
+  <component name="RunManager" selected="Python.dataSpider">
     <configuration default="false" name="plot" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -653,20 +653,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="38" y="23" width="1245" height="675" extended-state="0" />
+    <frame x="11" y="24" width="1245" height="675" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19196787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35313532" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22607261" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1032,39 +1032,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2017.1/python_stubs/-2125986627/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16110">
+          <caret line="1074" column="14" lean-forward="false" selection-start-line="1074" selection-start-column="11" selection-end-line="1074" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/dataProvider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
+        <state relative-caret-position="310">
           <caret line="30" column="8" lean-forward="false" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
           <folding>
             <element signature="e#44#73#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/dataSpider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="100" column="15" lean-forward="false" selection-start-line="100" selection-start-column="15" selection-end-line="102" selection-end-column="31" />
-          <folding>
-            <element signature="e#44#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/charge/chargeModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2017.1/python_stubs/-2125986627/__builtin__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="1074" column="14" lean-forward="false" selection-start-line="1074" selection-start-column="11" selection-end-line="1074" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,24 +1060,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/strategy/chargeStrategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        <state relative-caret-position="263">
+          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charge/chargeModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/charge/chargeResult.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+        <state relative-caret-position="250">
+          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/charge/chargeManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="54" column="51" lean-forward="false" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
+        <state relative-caret-position="-409">
+          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
           <folding>
             <element signature="e#21#71#0" expanded="true" />
           </folding>
@@ -1104,10 +1094,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chargeController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="124">
+          <caret line="17" column="52" lean-forward="false" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
           <folding>
             <element signature="e#187#233#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/dataSpider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="102" column="31" lean-forward="true" selection-start-line="102" selection-start-column="31" selection-end-line="102" selection-end-column="31" />
+          <folding>
+            <element signature="e#44#59#0" expanded="true" />
           </folding>
         </state>
       </provider>

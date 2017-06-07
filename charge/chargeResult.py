@@ -10,6 +10,9 @@ class ChargeResult(object):
         self.total_lost = 0
         self.total_get = 0
         self.asset_array = []
+        self.gap = 0
+        self.gapArray = []
+        self.bigGet = 0
 
     def clearResult(self):
         self.all_assets = 100000
@@ -30,3 +33,7 @@ class ChargeResult(object):
         print "total_lost = %.2f" %self.total_lost + "%"
         print "average_get = %.2f" %(self.total_get/self.get_time) + "%"
         print "average_lost = %.2f" % (self.total_lost/ self.lost_time) + "%"
+        print "gap_array = %s " % self.gapArray
+        print "average_gap = %.f 天" % (self.gap/self.bigGet)
+        print "total_bigGet_time = %.f 次" % self.bigGet
+        print "average_bigGet_time = %.2f " % (self.bigGet*100/self.get_time) +"%"
