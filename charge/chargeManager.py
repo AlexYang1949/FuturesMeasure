@@ -8,7 +8,7 @@ bool
 class ChargeManager():
     def __init__(self,data,chargePeriod ,nodeStat=True):
         self.data = data
-        self.chargeResult = ChargeResult()
+        self.chargeResult = ChargeResult(len(data))
         self.chargeModel = ChargeModel()
         self.chargeStrategy = ChargeStrategy()
         self.chargePeriod = chargePeriod
@@ -49,22 +49,27 @@ class ChargeManager():
         self.chargeResult.asset_array.append((date, self.chargeResult.all_assets))
 
         if dis > 0:
+            self.chargeResult.con_lost = 0
             self.chargeResult.get_time += 1
             self.chargeResult.total_get += precent
             if precent > 5:
                 self.chargeResult.bigGet += 1
                 self.chargeResult.gap += self.chargeModel.ref_hold_days
                 self.chargeResult.gapArray.append(self.chargeModel.ref_hold_days)
+                self.chargeResult.gap_lost_array.append(self.chargeResult.gap_lost_time)
                 self.chargeModel.ref_hold_days = 0
                 self.chargeResult.distant_bigGet = 0
+                self.chargeResult.gap_lost_time = 0
             else:
                 self.chargeModel.ref_hold_days += self.chargeModel.hold_days
                 self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
         else:
+            self.chargeResult.con_lost += 1
             self.chargeResult.lost_time += 1
             self.chargeResult.total_lost += precent
             self.chargeModel.ref_hold_days += self.chargeModel.hold_days
             self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
+            self.chargeResult.gap_lost_time += 1
 
         if self.nodeStat:
             print  '%s 收益：%.2f 成交价:%s 账户余额:%.2f ' % (str(date), precent, price,self.chargeResult.all_assets)
