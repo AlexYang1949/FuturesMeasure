@@ -5,7 +5,7 @@
 from charge.chargeManager import ChargeManager
 from data.dataProvider import DataProvider
 from plot.plot import Plot
-charge_period = 23
+charge_period = 25
 
 def testMa(nameArray,period):
     for name in nameArray:
@@ -15,7 +15,7 @@ def testMa(nameArray,period):
         cm = ChargeManager(p_list, period,nodeStat=False)
         cm.startCharge()
         cm.printChargeResult()
-        print '------------------------------------'
+
 
 if __name__ == '__main__':
     dceNameArray = ['豆一', '豆二', '胶合板', '玉米', '纤维板', '铁矿石', '焦炭', '鸡蛋', '焦煤', '塑料', '豆粕', 'PP', 'PVC', '豆油', '棕榈']
@@ -23,6 +23,10 @@ if __name__ == '__main__':
     shfeNameArray = ['白银', '沪铝', '黄金', '沥青', '沪铜', '燃油', '热扎卷板', '沪镍', '沪铅', '螺纹钢', '橡胶', '沪锡', '线材', '沪锌']
     cffexNameArray = ['中证500', '沪深300', '上证50', '10年国债', '5年国债']
     betterNameArray = ['铁矿石', '焦炭','焦煤','塑料','PP','豆油','棕榈','棉花','硅铁','白糖','PTA','动力煤','沪铜','热扎卷板','螺纹钢','橡胶']
-    testMa(betterNameArray,period=charge_period)
+    allNameArray = czceNameArray + dceNameArray + shfeNameArray + cffexNameArray
 
+    for name in allNameArray:
+        testMa([name],period=charge_period)
+
+    # testMa(['棉花'], period=charge_period)
 

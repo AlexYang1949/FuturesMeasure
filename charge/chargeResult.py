@@ -16,6 +16,7 @@ class ChargeResult(object):
         self.gap_lost_time = 0
         self.bigGet = 0
         self.distant_bigGet = 0
+        self.big_array = []
         self.total_day = total_day
         self.con_lost = 0
 
@@ -36,12 +37,12 @@ class ChargeResult(object):
 
     def printResult(self):
         min_lost_time = self.get_median(self.gap_lost_array)
-        print "all_assets = %.2f 元" %self.all_assets
         print "年均收益 %.2f " %((self.total_get+self.total_lost)*200/self.total_day)+"%"
+        print "最大获利比例 = %.2f" % self.max_get + "%"
+        print "最大损失比例 = %.2f" % self.max_lost + "%"
+        print "all_assets = %.2f 元" % self.all_assets
         print "total_get = %.2f" % self.total_get + "%"
         print "total_lost = %.2f" % self.total_lost + "%"
-        print "max_get = %.2f"%self.max_get + "%"
-        print "max_lost = %.2f"%self.max_lost + "%"
         print "get_time = %.f 次" %self.get_time
         print "lost_time = %.f 次" %self.lost_time
         print "percent_get_time = %.f " % (self.get_time * 100 / (self.get_time+self.lost_time)) + "%"
@@ -54,4 +55,6 @@ class ChargeResult(object):
         print "distant last_bigGet = %.f 天" % self.distant_bigGet
         print "大涨间平均失败次数 =%.f 次" % min_lost_time
         print "连续失败次数 = %d 次"%self.con_lost
-        print "是否可以交易  ： %s" % "是" if self.con_lost>min_lost_time else "否"
+        print "是否可以交易  ： %s" %("是" if self.con_lost>min_lost_time else "否")
+        for charge in self.big_array:
+            print charge

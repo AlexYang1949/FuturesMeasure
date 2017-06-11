@@ -4,7 +4,7 @@ from strategy.chargeStrategy import ChargeStrategy
 from chargeModel import ChargeModel
 from chargeResult import ChargeResult
 from utils.utils import utils
-bool
+
 class ChargeManager():
     def __init__(self,data,chargePeriod ,nodeStat=True):
         self.data = data
@@ -47,9 +47,8 @@ class ChargeManager():
 
         self.chargeResult.all_assets += dis
         self.chargeResult.asset_array.append((date, self.chargeResult.all_assets))
-
+        charge_string  = '日期 : %s  幅度 : %.2f  价格 ：%.2f' %(str(date),precent,price)
         if dis > 0:
-            self.chargeResult.con_lost = 0
             self.chargeResult.get_time += 1
             self.chargeResult.total_get += precent
             if precent > 5:
@@ -60,6 +59,8 @@ class ChargeManager():
                 self.chargeModel.ref_hold_days = 0
                 self.chargeResult.distant_bigGet = 0
                 self.chargeResult.gap_lost_time = 0
+                self.chargeResult.big_array.append(charge_string)
+                self.chargeResult.con_lost = 0
             else:
                 self.chargeModel.ref_hold_days += self.chargeModel.hold_days
                 self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
@@ -70,9 +71,11 @@ class ChargeManager():
             self.chargeModel.ref_hold_days += self.chargeModel.hold_days
             self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
             self.chargeResult.gap_lost_time += 1
+            if precent<-2:
+                self.chargeResult.big_array.append(charge_string)
 
         if self.nodeStat:
-            print  '%s 收益：%.2f 成交价:%s 账户余额:%.2f ' % (str(date), precent, price,self.chargeResult.all_assets)
+            print  '震荡 %d %s 价格：%.2f 幅度:%s 账户余额:%.2f ' % (self.chargeResult.gap_lost_time,str(date), precent, price,self.chargeResult.all_assets)
         self.chargeModel.hold_days = 1
 
     def printChargeResult(self):

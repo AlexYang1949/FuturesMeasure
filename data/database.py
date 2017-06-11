@@ -1,6 +1,5 @@
 #!/usr/local/bin/python
 #-*-coding:utf-8-*-
-
 import MySQLdb
 
 class Database(object):
@@ -21,8 +20,9 @@ class Database(object):
         print '%s写入%s，结果%d'%(tablename,str(date),n)
 
     # 查询
-    def select(self,colume="*",db_name='c_table'):
-        n = self.cursor.execute("select "+colume+" from "+db_name)
+    def select(self,colume="*",db_name='c_table',condition=''):
+        sql = "select "+colume+" from "+db_name+" where "+condition if condition!='' else "select " + colume + " from " + db_name
+        n = self.cursor.execute(sql)
         return self.cursor.fetchall()
 
     # 建表
@@ -54,11 +54,11 @@ class Database(object):
         #
 
     # 删除
-    def delete(self,tablename):
-        sql = "delete from "+tablename+" where close=0"
+    def delete(self,tablename,condition):
+        print '%s删除一条记录 %s' % (tablename, self.select(db_name=tablename, condition=condition))
+        sql = "delete from "+tablename+" where " +condition
         n = self.cursor.execute(sql)
         self.conn.commit()
-        print '%s删除一条记录 %s'%(tablename,n)
 
     # 清空
     def truncate(self, tablename):
