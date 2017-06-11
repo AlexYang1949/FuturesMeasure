@@ -39,6 +39,7 @@ class ChargeResult(object):
 
     def printResult(self):
         min_lost_time = self.get_median(self.gap_lost_array)
+        self.big_get_time = 1 if self.big_get_time==0 else self.big_get_time
         print "年均收益 %.2f " %((self.total_get+self.total_lost)*200/self.total_day)+"%"
         print "最大获利比例 = %.2f" % self.max_get + "%"
         print "最大损失比例 = %.2f" % self.max_lost + "%"
