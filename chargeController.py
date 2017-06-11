@@ -23,7 +23,7 @@ if __name__ == '__main__':
     shfeNameArray = ['白银', '沪铝', '黄金', '沥青', '沪铜', '燃油', '热扎卷板', '沪镍', '沪铅', '螺纹钢', '橡胶', '沪锡', '线材', '沪锌']
     cffexNameArray = ['中证500', '沪深300', '上证50', '10年国债', '5年国债']
     betterNameArray = ['铁矿石', '焦炭','焦煤','塑料','PP','豆油','棕榈','棉花','硅铁','白糖','PTA','动力煤','沪铜','热扎卷板','螺纹钢','橡胶']
-    allNameArray = czceNameArray + dceNameArray + shfeNameArray + cffexNameArray
+    allNameArray = czceNameArray + dceNameArray + shfeNameArray 
 
     for name in allNameArray:
         testMa([name],period=charge_period)

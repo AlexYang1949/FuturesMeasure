@@ -52,7 +52,7 @@ class ChargeManager():
             self.chargeResult.get_time += 1
             self.chargeResult.total_get += precent
             if precent > 5:
-                self.chargeResult.bigGet += 1
+                self.chargeResult.big_get_time += 1
                 self.chargeResult.gap += self.chargeModel.ref_hold_days
                 self.chargeResult.gapArray.append(self.chargeModel.ref_hold_days)
                 self.chargeResult.gap_lost_array.append(self.chargeResult.gap_lost_time)
@@ -61,6 +61,7 @@ class ChargeManager():
                 self.chargeResult.gap_lost_time = 0
                 self.chargeResult.big_array.append(charge_string)
                 self.chargeResult.con_lost = 0
+                self.chargeResult.big_get += precent
             else:
                 self.chargeModel.ref_hold_days += self.chargeModel.hold_days
                 self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
