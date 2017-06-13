@@ -5,14 +5,14 @@
 from charge.chargeManager import ChargeManager
 from data.dataProvider import DataProvider
 from plot.plot import Plot
-charge_period = 25
+charge_period = 20
 
 def testMa(nameArray,period):
     for name in nameArray:
         print '----------------%s--%d周期-------------------' % (name, period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
-        cm = ChargeManager(p_list, period,nodeStat=False)
+        cm = ChargeManager(p_list, period,nodeStat=True)
         cm.startCharge()
         cm.printChargeResult()
 
@@ -22,11 +22,11 @@ if __name__ == '__main__':
     czceNameArray = ['棉花', '玻璃', '郑醇', '菜油', '早稻', '菜粕', '菜籽', '硅铁', '锰硅', '白糖', 'PTA', '强麦', '动力煤']
     shfeNameArray = ['白银', '沪铝', '黄金', '沥青', '沪铜', '燃油', '热扎卷板', '沪镍', '沪铅', '螺纹钢', '橡胶', '沪锡', '线材', '沪锌']
     cffexNameArray = ['中证500', '沪深300', '上证50', '10年国债', '5年国债']
-    betterNameArray = ['棉花','硅铁','锰硅','白糖','PTA','动力煤','铁矿石', '焦炭','塑料','PP', '豆粕','豆油', '热扎卷板','螺纹钢','棕榈','螺纹钢','橡胶']
+    betterNameArray = ['棉花','硅铁','锰硅','白糖','PTA','动力煤','铁矿石', '焦炭','塑料','PP', '豆粕','豆油', '热扎卷板','螺纹钢','棕榈','橡胶']
     allNameArray = czceNameArray + dceNameArray + shfeNameArray
 
     for name in betterNameArray:
         testMa([name],period=charge_period)
-
-    # testMa(['棉花'], period=charge_period)
+    # for i in xrange(4,26):
+    #     testMa(['棉花'], period=i)
 

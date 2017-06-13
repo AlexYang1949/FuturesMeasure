@@ -76,8 +76,8 @@ class ChargeManager():
                 self.chargeResult.big_array.append(charge_string)
 
         if self.nodeStat:
-            print  '震荡 %d %s 价格：%.2f 幅度:%s 账户余额:%.2f ' % (self.chargeResult.gap_lost_time,str(date), precent, price,self.chargeResult.all_assets)
-        self.chargeModel.hold_days = 1
+            print  '震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d' % (self.chargeResult.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days)
+        self.chargeModel.hold_days = 0
 
     def printChargeResult(self):
         self.chargeResult.printResult()
