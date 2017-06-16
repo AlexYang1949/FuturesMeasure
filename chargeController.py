@@ -12,7 +12,7 @@ def testMa(nameArray,period):
         print '----------------%s--%d周期-------------------' % (name, period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
-        cm = ChargeManager(p_list, period,nodeStat=True)
+        cm = ChargeManager(p_list, period, nodeStat=True)
         cm.startCharge()
         cm.printChargeResult()
 
