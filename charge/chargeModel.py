@@ -8,3 +8,5 @@ class ChargeModel(object):
         self.ref_hold_days = 0
         self.max_price = 0
         self.min_price = 0
+        self.max_hold_day = 0
+        self.min_hold_day = 0

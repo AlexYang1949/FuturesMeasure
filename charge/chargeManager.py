@@ -25,8 +25,13 @@ class ChargeManager():
     def exchange(self,price, direction, date):
         if direction!=0:
             self.chargeModel.hold_days += 1
-            self.chargeModel.max_price = max([price, self.chargeModel.max_price])
-            self.chargeModel.min_price = min([price, self.chargeModel.min_price])
+            if price >= self.chargeModel.max_price:
+                self.chargeModel.max_hold_day = self.chargeModel.hold_days
+                self.chargeModel.max_price = price
+            if price <= self.chargeModel.min_price:
+                self.chargeModel.min_hold_day = self.chargeModel.hold_days
+                self.chargeModel.min_price = price
+
         if self.chargeModel.hold_direct == direction:
             return
         self.cover(price, date)
@@ -51,7 +56,6 @@ class ChargeManager():
         direction = '涨' if self.chargeModel.hold_direct == 1 else '跌'
         charge_string  = '日期 : %s  幅度 : %.2f  价格 ：%.2f 持有时间 %d 方向:%s' %\
                          (str(date),precent,price,self.chargeModel.hold_days,direction)
-        mid_price = price
         if dis > 0:
             self.chargeResult.get_time += 1
             self.chargeResult.total_get += precent
@@ -70,7 +74,6 @@ class ChargeManager():
                 self.chargeModel.ref_hold_days += self.chargeModel.hold_days
                 self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
         else:
-            mid_price = self.chargeModel.min_price
             self.chargeResult.con_lost += 1
             self.chargeResult.lost_time += 1
             self.chargeResult.total_lost += precent
@@ -82,11 +85,13 @@ class ChargeManager():
 
         if self.nodeStat:
             precentx = ((self.chargeModel.max_price if self.chargeModel.hold_direct==1 else self.chargeModel.min_price) - self.chargeModel.hold_price) * self.chargeModel.hold_direct * self.chargeModel.hold_number* 100 / self.chargeResult.all_assets
-            print  '震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d 方向:%s 最大获利 = %.2f' % \
-                   (self.chargeResult.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx)
+            print  '震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
+                   (self.chargeResult.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
         self.chargeModel.hold_days = 0
         self.chargeModel.max_price = price
         self.chargeModel.min_price = price
+        self.chargeModel.min_hold_day = 0
+        self.chargeModel.max_hold_day = 0
 
     def printChargeResult(self):
         self.chargeResult.printResult()
