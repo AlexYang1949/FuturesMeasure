@@ -1,19 +1,29 @@
 #-*-coding:utf-8-*-
 import matplotlib.pyplot as plt
+import numpy as np
 from data.dataProvider import DataProvider
+from matplotlib.dates import DayLocator, HourLocator, DateFormatter, drange
+from datetime import datetime
 class Plot():
     @classmethod
-    def plot(self,value_array,xlabel_array):
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(value_array)
-        ax.set_xticklabels(xlabel_array, rotation=-30)
+    def plot(self,array,title):
+        xlabel_array = [int(price[1]) for price in array]
+        value_array = [datetime.strptime(price[0], "%Y-%m-%d") for price in array]
+        figure = plt.figure()
+        axes = figure.gca()
+        axes.set_title(title)
+        axes.plot(value_array, xlabel_array)
         plt.show()
 
 if __name__ == '__main__':
     dp = DataProvider('玉米')
     p_list = dp.getData(['date', 'close'])
-    price_list = [int(price[1]) for price in p_list]
-    date_list = [str(price[0]) for price in p_list]
-    print price_list ,date_list
-    Plot.plot(price_list,date_list)
+    Plot.plot(p_list)
+    # x1 = [10,3,4]
+    # y1 = [5,7,8]
+    # plt.plot(x1,y1,label='xy1')
+    # plt.xlabel('Close')
+    # plt.ylabel('Date')
+    # plt.title('Test Draw')
+    # plt.legend()
+    # plt.show()

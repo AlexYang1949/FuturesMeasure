@@ -6,18 +6,19 @@ from charge.chargeManager import ChargeManager
 from data.dataProvider import DataProvider
 from plot.plot import Plot
 charge_period = 20
-
 def testMa(nameArray,period):
     for name in nameArray:
         print '----------------%s--%d周期-------------------' % (name, period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
-        cm = ChargeManager(p_list, period, nodeStat=True)
+        cm = ChargeManager(p_list, period, nodeStat=False)
         cm.startCharge()
         cm.printChargeResult()
+        Plot.plot(cm.chargeResult.asset_array,unicode(name, "utf-8") )
 
 
 if __name__ == '__main__':
+
     dceNameArray = ['豆一', '豆二', '胶合板', '玉米', '纤维板', '铁矿石', '焦炭', '鸡蛋', '焦煤', '塑料', '豆粕', 'PP', 'PVC', '豆油', '棕榈']
     czceNameArray = ['棉花', '玻璃', '郑醇', '菜油', '早稻', '菜粕', '菜籽', '硅铁', '锰硅', '白糖', 'PTA', '强麦', '动力煤']
     shfeNameArray = ['白银', '沪铝', '黄金', '沥青', '沪铜', '燃油', '热扎卷板', '沪镍', '沪铅', '螺纹钢', '橡胶', '沪锡', '线材', '沪锌']
