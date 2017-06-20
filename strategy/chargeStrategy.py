@@ -33,6 +33,7 @@ class ChargeStrategy():
     def maAvdStrategy(self,hold_direction,priceList,index,period):
         if (index > 80):
             price = priceList[index]
+            ref_price = priceList[index-1]
             lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
             ref_lma = self.ma(period, priceList[(index - period ):index])
             if self.preSellPrice!=0 and hold_direction==Charge.empty:
@@ -46,17 +47,17 @@ class ChargeStrategy():
                     self.preSellPrice = 0
                     self.preBuyPrice = 0
                     return Charge.buy_hold
-            #上穿
-            if price<lma and price>ref_lma:
+            #下穿
+            if price<lma and ref_price>ref_lma:
                 self.preSellPrice = price
                 #持仓
-                if hold_direction==Charge.sell_hold:
+                if hold_direction==Charge.buy_hold:
                     return Charge.empty
-            #下穿
-            if price > lma and price < ref_lma:
+            #上穿
+            if price > lma and ref_price < ref_lma:
                 self.preBuyPrice = price
                 # 持仓
-                if hold_direction == Charge.buy_hold:
+                if hold_direction == Charge.sell_hold:
                     return Charge.empty
             return hold_direction
 

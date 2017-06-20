@@ -60,5 +60,5 @@ class ChargeResult(object):
         print "资金总额 = %.2f 元" % self.all_assets
         print "总获利比例 = %.2f" % self.total_get + "%"
         print "总损失比例 = %.2f" % self.total_lost + "%"
-        for charge in self.big_array:
-            print charge
+        # for charge in self.big_array:
+        #     print charge

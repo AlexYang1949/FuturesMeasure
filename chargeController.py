@@ -14,7 +14,7 @@ def testMa(nameArray,period):
         cm = ChargeManager(p_list, period, nodeStat=False)
         cm.startCharge()
         cm.printChargeResult()
-        Plot.plot(cm.chargeResult.asset_array,unicode(name, "utf-8") )
+        # Plot.plot(cm.chargeResult.asset_array,unicode(name, "utf-8") )
 
 
 if __name__ == '__main__':
@@ -25,9 +25,8 @@ if __name__ == '__main__':
     cffexNameArray = ['中证500', '沪深300', '上证50', '10年国债', '5年国债']
     betterNameArray = ['棉花','硅铁','锰硅','白糖','PTA','动力煤','铁矿石', '焦炭','塑料','PP', '豆粕','豆油', '热扎卷板','螺纹钢','棕榈','橡胶']
     allNameArray = czceNameArray + dceNameArray + shfeNameArray
-
     for name in betterNameArray:
         testMa([name],period=charge_period)
-    # for i in xrange(4,26):
+    # for i in xrange(18,26):
     #     testMa(['棉花'], period=i)
 

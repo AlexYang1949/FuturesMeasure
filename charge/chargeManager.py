@@ -22,7 +22,7 @@ class ChargeManager():
             if utils().is_number(priceArray[index]) and priceArray[index]!=0:
                 strategyResult = self.chargeStrategy.maStrategy(priceArray,index,self.chargePeriod)
                 strategyResult1 = self.chargeStrategy.maAvdStrategy(self.chargeModel.hold_direct,priceArray, index, self.chargePeriod)
-                self.exchange(priceArray[index],strategyResult,self.data[index][0])
+                self.exchange(priceArray[index],strategyResult1,self.data[index][0])
 
     def exchange(self,price, direction, date):
         if direction!=0:
@@ -79,7 +79,8 @@ class ChargeManager():
                 self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
         else:
             self.chargeResult.con_lost += 1
-            self.chargeResult.lost_time += 1
+            if dis<0:
+                self.chargeResult.lost_time += 1
             self.chargeResult.total_lost += precent
             self.chargeModel.ref_hold_days += self.chargeModel.hold_days
             self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
