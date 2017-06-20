@@ -20,7 +20,9 @@ class ChargeManager():
             priceArray.append(priceData[1])
         for index, price in enumerate(self.data):
             if utils().is_number(priceArray[index]) and priceArray[index]!=0:
-                self.exchange(priceArray[index],self.chargeStrategy.maStrategy(priceArray,index,self.chargePeriod),self.data[index][0])
+                strategyResult = self.chargeStrategy.maStrategy(priceArray,index,self.chargePeriod)
+                strategyResult1 = self.chargeStrategy.maAvdStrategy(self.chargeModel.hold_direct,priceArray, index, self.chargePeriod)
+                self.exchange(priceArray[index],strategyResult,self.data[index][0])
 
     def exchange(self,price, direction, date):
         if direction!=0:
@@ -53,9 +55,11 @@ class ChargeManager():
 
         self.chargeResult.all_assets += dis
         self.chargeResult.asset_array.append((date, self.chargeResult.all_assets))
+        precentx = ((
+                    self.chargeModel.max_price if self.chargeModel.hold_direct == 1 else self.chargeModel.min_price) - self.chargeModel.hold_price) * self.chargeModel.hold_direct * self.chargeModel.hold_number * 100 / self.chargeResult.all_assets
         direction = '涨' if self.chargeModel.hold_direct == 1 else '跌'
-        charge_string  = '日期 : %s  幅度 : %.2f  价格 ：%.2f 持有时间 %d 方向:%s' %\
-                         (str(date),precent,price,self.chargeModel.hold_days,direction)
+        charge_string = '日期 : %s  幅度 : %.2f  价格 ：%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
+                        (str(date), precent, price, self.chargeModel.hold_days, direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
         if dis > 0:
             self.chargeResult.get_time += 1
             self.chargeResult.total_get += precent
@@ -84,7 +88,7 @@ class ChargeManager():
                 self.chargeResult.big_array.append(charge_string)
 
         if self.nodeStat:
-            precentx = ((self.chargeModel.max_price if self.chargeModel.hold_direct==1 else self.chargeModel.min_price) - self.chargeModel.hold_price) * self.chargeModel.hold_direct * self.chargeModel.hold_number* 100 / self.chargeResult.all_assets
+
             print  '震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
                    (self.chargeResult.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
         self.chargeModel.hold_days = 0

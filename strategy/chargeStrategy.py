@@ -5,13 +5,17 @@
 # 多开 空开 多平 空平
 
 class Charge():
-    buy_open = 1
-    sell_open = -1
+    buy_hold = 1
+    sell_hold = -1
     empty = 0
     buy_close = 2
     sell_close = -2
 
 class ChargeStrategy():
+    def __init__(self):
+        self.preBuyPrice = 0
+        self.preSellPrice = 0
+
     def ma(self, x, list):
         return sum(list) / x
 
@@ -20,8 +24,41 @@ class ChargeStrategy():
             price = priceList[index]
             lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
             if price >= lma :
-                return Charge.buy_open
+                return Charge.buy_hold
             elif price < lma :
-                return Charge.sell_open
+                return Charge.sell_hold
+        else:
+            return Charge.empty
+
+    def maAvdStrategy(self,hold_direction,priceList,index,period):
+        if (index > 80):
+            price = priceList[index]
+            lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
+            ref_lma = self.ma(period, priceList[(index - period ):index])
+            if self.preSellPrice!=0 and hold_direction==Charge.empty:
+                if price < self.preSellPrice:
+                    self.preSellPrice=0
+                    self.preBuyPrice=0
+                    return Charge.sell_hold
+
+            if self.preBuyPrice != 0 and hold_direction == Charge.empty:
+                if price > self.preBuyPrice:
+                    self.preSellPrice = 0
+                    self.preBuyPrice = 0
+                    return Charge.buy_hold
+            #上穿
+            if price<lma and price>ref_lma:
+                self.preSellPrice = price
+                #持仓
+                if hold_direction==Charge.sell_hold:
+                    return Charge.empty
+            #下穿
+            if price > lma and price < ref_lma:
+                self.preBuyPrice = price
+                # 持仓
+                if hold_direction == Charge.buy_hold:
+                    return Charge.empty
+            return hold_direction
+
         else:
             return Charge.empty

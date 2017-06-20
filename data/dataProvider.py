@@ -37,7 +37,7 @@ class DataProvider():
     def cleanData(self,name_array=[]):
         c_list = self.getData(name_array=name_array)
         for index,val in enumerate(c_list,1):
-            index = index -1
+            index = index - 1
             # if val[1] == 0 :
             #     self.db.delete(tablename=self.db_name, condition="date='%s'" % str(val[0]))
             # print str(val[0]),val[1],c_list[index-1][1], (val[1]-c_list[index-1][1])/c_list[index-1][1]
