@@ -61,18 +61,28 @@ class ChargeManager():
         charge_string = '日期 : %s  幅度 : %.2f  价格 ：%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
                         (str(date), precent, price, self.chargeModel.hold_days, direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
         if dis > 0:
+            # 总获利次数
             self.chargeResult.get_time += 1
+            # 总获利比例
             self.chargeResult.total_get += precent
             if precent > 5:
+                # 大涨次数
                 self.chargeResult.big_get_time += 1
+                # 大涨之间间隔
                 self.chargeResult.gap += self.chargeModel.ref_hold_days
+                # 大涨之间间隔
                 self.chargeResult.gapArray.append(self.chargeModel.ref_hold_days)
-                self.chargeResult.gap_lost_array.append(self.chargeResult.gap_lost_time)
-                self.chargeModel.ref_hold_days = 0
-                self.chargeResult.distant_bigGet = 0
-                self.chargeResult.gap_lost_time = 0
+                self.chargeResult.gap_lost_array.append(self.chargeModel.gap_lost_time)
+                # 大涨
                 self.chargeResult.big_array.append(charge_string)
+                # 重置上次上涨之间间隔
+                self.chargeModel.ref_hold_days = 0
+                # 距离上次大涨天数
+                self.chargeResult.distant_bigGet = 0
+                # 震荡次数
+                self.chargeModel.gap_lost_time = 0
                 self.chargeResult.con_lost = 0
+                # 大涨比例
                 self.chargeResult.big_get += precent
             else:
                 self.chargeModel.ref_hold_days += self.chargeModel.hold_days
@@ -84,14 +94,15 @@ class ChargeManager():
             self.chargeResult.total_lost += precent
             self.chargeModel.ref_hold_days += self.chargeModel.hold_days
             self.chargeResult.distant_bigGet = self.chargeModel.ref_hold_days
-            self.chargeResult.gap_lost_time += 1
+            # 震荡次数
+            self.chargeModel.gap_lost_time += 1
             if precent<-2:
                 self.chargeResult.big_array.append(charge_string)
 
         if self.nodeStat:
 
             print  '震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
-                   (self.chargeResult.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
+                   (self.chargeModel.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
         self.chargeModel.hold_days = 0
         self.chargeModel.max_price = price
         self.chargeModel.min_price = price

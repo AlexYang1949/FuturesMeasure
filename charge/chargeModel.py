@@ -10,3 +10,4 @@ class ChargeModel(object):
         self.min_price = 0
         self.max_hold_day = 0
         self.min_hold_day = 0
+        self.gap_lost_time = 0

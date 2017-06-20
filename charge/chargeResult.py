@@ -13,7 +13,6 @@ class ChargeResult(object):
         self.gap = 0
         self.gapArray = []
         self.gap_lost_array = []
-        self.gap_lost_time = 0
         self.big_get_time = 0
         self.big_get = 0
         self.distant_bigGet = 0
@@ -53,7 +52,7 @@ class ChargeResult(object):
         print "平均每次损失比例 = %.2f" % (self.total_lost/ self.lost_time) + "%"
         print "大涨间隔 = %s " % self.gapArray
         print "平均大涨间隔 = %.f 天" % (self.gap/self.big_get_time)
-        print "距离上次大涨次数 = %.f 天" % self.distant_bigGet
+        print "距离上次大涨天数 = %.f 天" % self.distant_bigGet
         print "大涨间平均失败次数 = %.f 次" % min_lost_time
         print "连续失败次数 = %d 次"%self.con_lost
         print "是否可以交易  ： %s" %("是" if self.con_lost>min_lost_time else "否")
