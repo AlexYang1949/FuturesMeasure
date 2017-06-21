@@ -8,13 +8,21 @@ from plot.plot import Plot
 charge_period = 20
 def testMa(nameArray,period):
     for name in nameArray:
-        print '----------------%s--%d周期-------------------' % (name, period)
+        print 'Ma----------------%s--%d周期-------------------' % (name, period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
         cm = ChargeManager(p_list, period, nodeStat=False)
-        cm.startCharge()
-        cm.printChargeResult()
-        # Plot.plot(cm.chargeResult.asset_array,unicode(name, "utf-8") )
+        cm.startCharge('ma')
+        cm.printStrategyResult()
+
+def testPreMa(nameArray,period):
+    for name in nameArray:
+        print 'preMa----------------%s--%d周期-------------------' % (name, period)
+        dp = DataProvider(name=name)
+        p_list = dp.getData(['date', 'close'])
+        cm = ChargeManager(p_list, period, nodeStat=False)
+        cm.startCharge('preMa')
+        cm.printStrategyResult()
 
 
 if __name__ == '__main__':
@@ -27,6 +35,5 @@ if __name__ == '__main__':
     allNameArray = czceNameArray + dceNameArray + shfeNameArray
     for name in betterNameArray:
         testMa([name],period=charge_period)
-    # for i in xrange(18,26):
-    #     testMa(['棉花'], period=i)
+        testPreMa([name],period=charge_period)
 
