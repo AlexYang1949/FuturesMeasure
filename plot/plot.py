@@ -19,11 +19,3 @@ if __name__ == '__main__':
     dp = DataProvider('玉米')
     p_list = dp.getData(['date', 'close'])
     Plot.plot(p_list)
-    # x1 = [10,3,4]
-    # y1 = [5,7,8]
-    # plt.plot(x1,y1,label='xy1')
-    # plt.xlabel('Close')
-    # plt.ylabel('Date')
-    # plt.title('Test Draw')
-    # plt.legend()
-    # plt.show()

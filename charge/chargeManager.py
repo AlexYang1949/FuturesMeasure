@@ -1,9 +1,11 @@
 #-*-coding:utf-8-*-
 
-from strategy.chargeStrategy import ChargeStrategy
 from chargeModel import ChargeModel
 from chargeResult import ChargeResult
+from plot.plot import Plot
+from strategy.chargeStrategy import ChargeStrategy
 from utils.utils import utils
+
 
 class ChargeManager():
     def __init__(self,data,chargePeriod ,nodeStat=True):
@@ -116,3 +118,10 @@ class ChargeManager():
 
     def printStrategyResult(self):
         self.chargeResult.printStrategy()
+
+    def plotResult(self):
+        Plot.plot(self.data,'price')
+        self.chargeResult.plot()
+
+    def resultJson(self):
+        return  self.chargeResult.resultJson()

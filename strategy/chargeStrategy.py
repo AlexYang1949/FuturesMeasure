@@ -3,7 +3,7 @@
 #1、把握进场时机 2、坚守正确的仓位 3、在正确的仓位上加码 4、减仓利润保护 5、转势果断立场
 #试单
 # 多开 空开 多平 空平
-
+from utils.Index import IndexLib
 class Charge():
     buy_hold = 1
     sell_hold = -1
@@ -16,13 +16,10 @@ class ChargeStrategy():
         self.preBuyPrice = 0
         self.preSellPrice = 0
 
-    def ma(self, x, list):
-        return sum(list) / x
-
     def maStrategy(self,priceList,index,period):
         if (index > 80):
             price = priceList[index]
-            lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
+            lma = IndexLib.ma(period, priceList[(index - period + 1):(index + 1)])
             if price >= lma :
                 return Charge.buy_hold
             elif price < lma :
@@ -34,14 +31,15 @@ class ChargeStrategy():
         if (index > 80):
             price = priceList[index]
             ref_price = priceList[index-1]
-            lma = self.ma(period, priceList[(index - period + 1):(index + 1)])
-            ref_lma = self.ma(period, priceList[(index - period ):index])
+            lma = IndexLib.ma(period, priceList[(index - period + 1):(index + 1)])
+            ref_lma = IndexLib.ma(period, priceList[(index - period ):index])
+            # 卖出平仓
             if self.preSellPrice!=0 and hold_direction==Charge.empty:
                 if price < self.preSellPrice:
                     self.preSellPrice=0
                     self.preBuyPrice=0
                     return Charge.sell_hold
-
+            # 买入平仓
             if self.preBuyPrice != 0 and hold_direction == Charge.empty:
                 if price > self.preBuyPrice:
                     self.preSellPrice = 0

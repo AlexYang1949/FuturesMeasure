@@ -13,7 +13,10 @@ def testMa(nameArray,period):
         p_list = dp.getData(['date', 'close'])
         cm = ChargeManager(p_list, period, nodeStat=False)
         cm.startCharge('ma')
-        cm.printStrategyResult()
+        cm.printChargeResult()
+        # cm.printStrategyResult()
+        # cm.plotResult()
+
 
 def testPreMa(nameArray,period):
     for name in nameArray:
@@ -22,7 +25,9 @@ def testPreMa(nameArray,period):
         p_list = dp.getData(['date', 'close'])
         cm = ChargeManager(p_list, period, nodeStat=False)
         cm.startCharge('preMa')
-        cm.printStrategyResult()
+        # cm.printStrategyResult()
+        cm.printChargeResult()
+        # cm.plotResult()
 
 
 if __name__ == '__main__':
@@ -33,7 +38,14 @@ if __name__ == '__main__':
     cffexNameArray = ['中证500', '沪深300', '上证50', '10年国债', '5年国债']
     betterNameArray = ['棉花','硅铁','锰硅','白糖','PTA','动力煤','铁矿石', '焦炭','塑料','PP', '豆粕','豆油', '热扎卷板','螺纹钢','棕榈','橡胶']
     allNameArray = czceNameArray + dceNameArray + shfeNameArray
-    for name in betterNameArray:
-        testMa([name],period=charge_period)
-        testPreMa([name],period=charge_period)
 
+    for name in allNameArray:
+        testMa([name],period=charge_period)
+        # testPreMa([name],period=charge_period)
+
+    # for name in betterNameArray:
+    #     for period in range(15, 25):
+    #         testMa([name],period=period)
+    #         testPreMa([name],period=period)
+    #
+    # testPreMa(['PTA'],16)

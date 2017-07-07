@@ -101,7 +101,6 @@ if __name__ == '__main__':
     for name in array:
         spider = DataSpider(name)
         spider.spiderEveryDay()
-    # 获得当前时间
 
     # for name in cffexNameArray:
     #     spider = DataSpider(name)

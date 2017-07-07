@@ -1,5 +1,5 @@
 #-*-coding:utf-8-*-
-
+from plot.plot import Plot
 class ChargeResult(object):
     def __init__(self,total_day):
         self.all_assets = 100000
@@ -18,7 +18,8 @@ class ChargeResult(object):
         self.distant_bigGet = 0
         self.big_array = []
         self.total_day = total_day
-        self.continue_lost = 0
+        self.continue_lost = 0         # 当前连续失败次数
+        self.max_rollback = 0          # 最大回撤
 
     def clearResult(self):
         self.all_assets = 100000
@@ -37,7 +38,7 @@ class ChargeResult(object):
         return (data[half] + data[~half]) / 2 + avg/2
 
     def printResult(self,nodeStat):
-        min_lost_time = self.get_median(self.gap_lost_array)
+        mid_lost_time = self.get_median(self.gap_lost_array)
         self.big_get_time = 1 if self.big_get_time==0 else self.big_get_time
         print "年均收益 %.2f " %((self.total_get+self.total_lost)*200/self.total_day)+"%"
         print "最大获利比例 = %.2f" % self.max_get + "%"
@@ -53,9 +54,9 @@ class ChargeResult(object):
         print "大涨间隔 = %s " % self.gapArray
         print "平均大涨间隔 = %.f 天" % (self.gap/self.big_get_time)
         print "距离上次大涨天数 = %.f 天" % self.distant_bigGet
-        print "大涨间平均失败次数 = %.f 次" % min_lost_time
+        print "大涨间平均失败次数 = %.f 次" % mid_lost_time
         print "当前连续失败次数 = %d 次"%self.continue_lost
-        print "是否可以交易  ： %s" %("是" if self.continue_lost>min_lost_time else "否")
+        print "是否可以交易  ： %s" %("是" if self.continue_lost>mid_lost_time else "否")
         print "资金总额 = %.2f 元" % self.all_assets
         print "总获利比例 = %.2f" % self.total_get + "%"
         print "总损失比例 = %.2f" % self.total_lost + "%"
@@ -72,3 +73,14 @@ class ChargeResult(object):
         print "平均每次损失比例 = %.2f" % (self.total_lost / self.lost_time) + "%"
         print "总获利比例 = %.2f" % self.total_get + "%"
         print "总损失比例 = %.2f" % self.total_lost + "%"
+        print "资金总额 = %.2f 元" % self.all_assets
+
+    def resultJson(self):
+        return {'profile_year' :float(((self.total_get + self.total_lost) * 200 / self.total_day)),
+                'key':'年均收益'}
+                # "最大获利比例 " : self.max_get + "%",
+                # "最大损失比例 " : self.max_lost + "%",
+                # "总获利次数 " : self.get_time}
+
+    def plot(self):
+        Plot.plot(self.asset_array,'name')
