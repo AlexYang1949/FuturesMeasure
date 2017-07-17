@@ -61,8 +61,9 @@ class ChargeResult(object):
         print "总获利比例 = %.2f" % self.total_get + "%"
         print "总损失比例 = %.2f" % self.total_lost + "%"
         if nodeStat:
+            print "大幅信息".center(50,"-")
             for charge in self.big_array:
-                print charge
+                print "大幅：" + charge
 
     def printStrategy(self):
         min_lost_time = self.get_median(self.gap_lost_array)
