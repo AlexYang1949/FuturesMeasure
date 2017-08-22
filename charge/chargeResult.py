@@ -3,6 +3,7 @@ from plot.plot import Plot
 class ChargeResult(object):
     def __init__(self,total_day):
         self.all_assets = 100000
+#最大获利最小获利
         self.max_lost = 0
         self.max_get = 0
         self.lost_time = 0
@@ -19,7 +20,11 @@ class ChargeResult(object):
         self.big_array = []
         self.total_day = total_day
         self.continue_lost = 0         # 当前连续失败次数
+
+        # 计算最大回撤
         self.max_rollback = 0          # 最大回撤
+        self.max_assets = 100000
+        self.min_assets = 100000
 
     def clearResult(self):
         self.all_assets = 100000
@@ -30,6 +35,7 @@ class ChargeResult(object):
         self.total_lost = 0
         self.total_get = 0
 
+    # 获取中值
     def get_median(self,data):
         if len(data)==0: return 0
         data.sort()
@@ -60,6 +66,7 @@ class ChargeResult(object):
         print "资金总额 = %.2f 元" % self.all_assets
         print "总获利比例 = %.2f" % self.total_get + "%"
         print "总损失比例 = %.2f" % self.total_lost + "%"
+        print "最大回撤 = %.2f" % (self.max_rollback*100) + "%"
         if nodeStat:
             print "大幅信息".center(50,"-")
             for charge in self.big_array:
@@ -68,7 +75,7 @@ class ChargeResult(object):
     def printStrategy(self):
         min_lost_time = self.get_median(self.gap_lost_array)
         self.big_get_time = 1 if self.big_get_time == 0 else self.big_get_time
-        print "年均收益 %.2f " % ((self.total_get + self.total_lost) * 200 / self.total_day) + "%"
+        print "年均收益 %.2f " % ((self.total_get + self.total_lost) * 244 / self.total_day) + "%"
         print "平均每次大涨比例 = %.2f" % (self.big_get / self.big_get_time) + "%"
         print "平均每次获利比例 = %.2f" % (self.total_get / self.get_time) + "%"
         print "平均每次损失比例 = %.2f" % (self.total_lost / self.lost_time) + "%"
@@ -82,6 +89,6 @@ class ChargeResult(object):
                 # "最大获利比例 " : self.max_get + "%",
                 # "最大损失比例 " : self.max_lost + "%",
                 # "总获利次数 " : self.get_time}
-
+    # 绘图
     def plot(self):
         Plot.plot(self.asset_array,'name')

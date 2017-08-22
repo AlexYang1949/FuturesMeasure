@@ -56,6 +56,14 @@ class ChargeManager():
             self.chargeResult.max_lost = precent
 
         self.chargeResult.all_assets += dis
+        if self.chargeResult.all_assets > self.chargeResult.max_assets:
+            self.chargeResult.max_assets = self.chargeResult.all_assets
+        if self.chargeResult.all_assets < self.chargeResult.min_assets:
+            self.chargeResult.min_assets = self.chargeResult.all_assets
+            rollback = (self.chargeResult.max_assets - self.chargeResult.min_assets)/self.chargeResult.max_assets
+            self.chargeResult.max_rollback = max(self.chargeResult.max_rollback,rollback)
+
+
         self.chargeResult.asset_array.append((date, self.chargeResult.all_assets))
         precentx = ((self.chargeModel.max_price if self.chargeModel.hold_direct == 1 else self.chargeModel.min_price) - self.chargeModel.hold_price) * self.chargeModel.hold_direct * self.chargeModel.hold_number * 100 / self.chargeResult.all_assets
         direction = '涨' if self.chargeModel.hold_direct == 1 else '跌'

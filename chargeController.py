@@ -11,7 +11,7 @@ def testMa(nameArray,period):
         print 'Ma----------------%s--%d周期-------------------' % (name, period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
-        cm = ChargeManager(p_list, period, nodeStat=True)
+        cm = ChargeManager(p_list, period, nodeStat=False)
         cm.startCharge('ma')
         cm.printChargeResult()
         # cm.printStrategyResult()
@@ -23,7 +23,7 @@ def testPreMa(nameArray,period):
         print 'preMa----------------%s--%d周期-------------------' % (name, period)
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
-        cm = ChargeManager(p_list, period, nodeStat=True)
+        cm = ChargeManager(p_list, period, nodeStat=False)
         cm.startCharge('preMa')
         # cm.printStrategyResult()
         cm.printChargeResult()
@@ -39,13 +39,5 @@ if __name__ == '__main__':
     betterNameArray = ['棉花','硅铁','锰硅','白糖','PTA','动力煤','铁矿石', '焦炭','塑料','PP', '豆粕','豆油', '热扎卷板','螺纹钢','棕榈','橡胶']
     allNameArray = czceNameArray + dceNameArray + shfeNameArray
 
-    for name in allNameArray:
+    for name in betterNameArray:
         testMa([name],period=charge_period)
-        # testPreMa([name],period=charge_period)
-
-    # for name in betterNameArray:
-    #     for period in range(15, 25):
-    #         testMa([name],period=period)
-    #         testPreMa([name],period=period)
-    #
-    # testPreMa(['PTA'],16)
