@@ -8,7 +8,7 @@ from plot.plot import Plot
 charge_period = 20
 def testMa(nameArray,period):
     for name in nameArray:
-        print 'Ma----------------%s--%d周期-------------------' % (name, period)
+        print("Ma----------------{}--{}周期-------------------".format(name, period))
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
         cm = ChargeManager(p_list, period, nodeStat=False)
@@ -20,7 +20,7 @@ def testMa(nameArray,period):
 
 def testPreMa(nameArray,period):
     for name in nameArray:
-        print 'preMa----------------%s--%d周期-------------------' % (name, period)
+        print('preMa----------------{}--{}周期-------------------'.format(name, period))
         dp = DataProvider(name=name)
         p_list = dp.getData(['date', 'close'])
         cm = ChargeManager(p_list, period, nodeStat=False)

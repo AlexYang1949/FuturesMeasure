@@ -2,6 +2,7 @@
 #-*-coding:utf-8-*-
 from database import Database
 from utils.utils import  utils
+import chargeController
 
 class DataProvider():
     def __init__(self,name):
@@ -17,7 +18,7 @@ class DataProvider():
                 nameStr += name
         c_list = self.db.select(colume=nameStr,db_name=self.db_name)
         if len(c_list)==0:
-            print '需要爬取'
+            print('需要爬取')
         else:
             p_list = []
             if len(name_array)==1:

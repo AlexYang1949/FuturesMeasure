@@ -1,13 +1,13 @@
 #!/usr/local/bin/python
 #-*-coding:utf-8-*-
-import MySQLdb
+import pymysql
 
 class Database(object):
     def __init__(self):
         self.connect()
     # 连接
     def connect(self):
-        self.conn = MySQLdb.connect(host="localhost", user="root", passwd="123456", db="futures", charset="utf8")
+        self.conn = pymysql.connect(host="localhost", user="root", passwd="123456", db="futures", charset="utf8")
         self.cursor = self.conn.cursor()
 
     # 写入
@@ -17,7 +17,7 @@ class Database(object):
         params = (str(date),float(open),float(close),float(high),float(low),vol,str(date))
         n = self.cursor.execute(sql,params)
         self.conn.commit()
-        print '%s写入%s，结果%d'%(tablename,str(date),n)
+        print('%s写入%s，结果%d'%(tablename,str(date),n))
 
     # 查询
     def select(self,colume="*",db_name='c_table',condition=''):
@@ -28,7 +28,7 @@ class Database(object):
     # 建表
     def create(self,tablename):
         if self.cursor.execute("show tables like '%s';"%tablename):
-            print tablename +'表已经存在'
+            print(tablename +'表已经存在')
             return 0
         else:
             sql =  "CREATE TABLE `%s` ("\
@@ -41,7 +41,7 @@ class Database(object):
             "UNIQUE KEY `date_UNIQUE` (`date`)"\
             ") ENGINE=InnoDB DEFAULT CHARSET=latin1;"%tablename
             if self.cursor.execute(sql)==0:
-                print tablename +"表创建成功"
+                print(tablename +"表创建成功")
             self.conn.commit()
 
     def close(self):
@@ -55,7 +55,7 @@ class Database(object):
 
     # 删除
     def delete(self,tablename,condition):
-        print '%s删除一条记录 %s' % (tablename, self.select(db_name=tablename, condition=condition))
+        print('%s删除一条记录 %s' % (tablename, self.select(db_name=tablename, condition=condition)))
         sql = "delete from "+tablename+" where " +condition
         n = self.cursor.execute(sql)
         self.conn.commit()
@@ -65,7 +65,7 @@ class Database(object):
         sql = "truncate " + tablename
         n = self.cursor.execute(sql)
         self.conn.commit()
-        print '清空%s' %tablename
+        print('清空%s' %tablename)
 
 if __name__ == '__main__':
     pass

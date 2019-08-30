@@ -113,8 +113,8 @@ class ChargeManager():
                 self.chargeResult.big_array.append(charge_string)
 
         if self.nodeStat:
-            print  '震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
-                   (self.chargeModel.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day))
+            print('震荡 %d 时间 %s 价格：%.f 幅度:%.2f 持有时间 %d 方向:%s 最大获利 = %.2f 最大获利时间 = %d' % \
+                   (self.chargeModel.gap_lost_time,str(date), price,precent,self.chargeModel.hold_days,direction,precentx,(self.chargeModel.max_hold_day if self.chargeModel.hold_direct==1 else self.chargeModel.min_hold_day)))
         self.chargeModel.hold_days = 0
         self.chargeModel.max_price = price
         self.chargeModel.min_price = price

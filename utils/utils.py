@@ -161,4 +161,4 @@ class utils():
         return self.getInfoWithName(name)[1]
 
 if __name__ == '__main__':
-    print utils.getShort('菜油')
+    print(utils.getShort('菜油'))
